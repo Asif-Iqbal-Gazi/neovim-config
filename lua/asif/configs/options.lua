@@ -89,4 +89,3 @@ vim.cmd [[set iskeyword+=-]]
 -- Netrw
 g.netrw_banner = 0
 g.netrw_mouse = 2
-

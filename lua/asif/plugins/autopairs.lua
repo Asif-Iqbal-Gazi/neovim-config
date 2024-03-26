@@ -1,4 +1,3 @@
-
 local M = {
   "windwp/nvim-autopairs",
 }

@@ -10,19 +10,22 @@ local M = {
   },
 }
 
+local wk_mappings = {
+  name = "Find",
+  b = { "<cmd>Telescope buffers previewer=false<cr>", "Find buffers" },
+  c = { "<cmd>Telescope git_commit<cr>", "Git Commits" },
+  f = { "<cmd>Telescope find_files<cr>", "Find files" },
+  --p = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
+  t = { "<cmd>Telescope live_grep<cr>", "Find text" },
+  h = { "<cmd>Telescope help_tags<cr>", "Help" },
+  l = { "<cmd>Telescope resume<cr>", "Last Search" },
+  r = { "<cmd>Telescope oldfiles<cr>", "Find Recent File" },
+  z = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Find in current buffer" },
+}
+
 function M.config()
   local wk = require "which-key"
-  wk.register {
-    ["<leader>bb"] = { "<cmd>Telescope buffers previewer=false<cr>", "Find" },
-    ["<leader>fb"] = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-    ["<leader>fc"] = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-    ["<leader>ff"] = { "<cmd>Telescope find_files<cr>", "Find files" },
-    ["<leader>fp"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
-    ["<leader>ft"] = { "<cmd>Telescope live_grep<cr>", "Find Text" },
-    ["<leader>fh"] = { "<cmd>Telescope help_tags<cr>", "Help" },
-    ["<leader>fl"] = { "<cmd>Telescope resume<cr>", "Last Search" },
-    ["<leader>fr"] = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
-  }
+  wk.register({ f = wk_mappings }, { prefix = "<leader>" })
 
   local icons = require "asif.configs.icons"
   local actions = require "telescope.actions"

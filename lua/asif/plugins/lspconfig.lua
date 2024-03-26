@@ -57,7 +57,7 @@ local wk_mappings = {
     "<cmd>lua vim.lsp.buf.format({async = true, filter = function(client) return client.name ~= 'typescript-tools' end})<cr>",
     "Format",
   },
-  i = { "<cmd>LspInfo<cr>", "Info" },
+  i = { "<cmd>LspInfo<cr>", "LSP Info" },
   j = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic" },
   h = { "<cmd>lua require('asif.plugins.lspconfig').toggle_inlay_hints()<cr>", "Hints" },
   k = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },

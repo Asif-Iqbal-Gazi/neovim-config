@@ -8,8 +8,6 @@ function M.config()
   local wk = require("which-key")
   wk.register(keymappings)
 
-  local icons = require("asif.configs.icons")
-
   require("nvim-tree").setup {
     sync_root_with_cwd = true,
     diagnostics = { enable = true },
@@ -21,4 +19,3 @@ function M.config()
 end
 
 return M
-
