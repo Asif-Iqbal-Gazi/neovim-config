@@ -5,8 +5,8 @@ local M = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make",
-      lazy = true
-    }
+      lazy = true,
+    },
   },
 }
 
@@ -24,13 +24,13 @@ local wk_mappings = {
 }
 
 function M.config()
-  local wk = require "which-key"
+  local wk = require("which-key")
   wk.register({ f = wk_mappings }, { prefix = "<leader>" })
 
-  local icons = require "asif.configs.icons"
-  local actions = require "telescope.actions"
+  local icons = require("asif.configs.icons")
+  local actions = require("telescope.actions")
 
-  require("telescope").setup {
+  require("telescope").setup({
     defaults = {
       prompt_prefix = icons.ui.Telescope .. " ",
       selection_caret = icons.ui.Forward .. " ",
@@ -93,7 +93,7 @@ function M.config()
         case_mode = "smart_case",
       },
     },
-  }
+  })
 end
 
 return M

@@ -14,13 +14,13 @@ M.on_attach = function(client, bufnr)
   keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 
-  if client.supports_method "textDocument/inlayHint" then
+  if client.supports_method("textDocument/inlayHint") then
     vim.lsp.inlay_hint.enable(bufnr, true)
   end
 end
 
 M.on_init = function(client, _)
-  if client.supports_method "textDocument/semanticTokens" then
+  if client.supports_method("textDocument/semanticTokens") then
     client.server_capabilities.semanticTokensProvider = nil
   end
 end
@@ -48,9 +48,10 @@ end
 
 local servers = {
   "html",
+  "clangd",
   "lua_ls",
   "jsonls",
-  "tsserver"
+  "tsserver",
 }
 
 local wk_mappings = {
@@ -70,11 +71,11 @@ local wk_mappings = {
 }
 
 function M.config()
-  local wk = require "which-key"
+  local wk = require("which-key")
   wk.register({ l = wk_mappings }, { prefix = "<leader>" })
 
-  local lspconfig = require "lspconfig"
-  local icons = require "asif.configs.icons"
+  local lspconfig = require("lspconfig")
+  local icons = require("asif.configs.icons")
 
   local default_diagnostic_config = {
     signs = {
@@ -107,7 +108,8 @@ function M.config()
   end
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+  vim.lsp.handlers["textDocument/signatureHelp"] =
+      vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
   require("lspconfig.ui.windows").default_options.border = "rounded"
 
   for _, server in pairs(servers) do
@@ -123,7 +125,7 @@ function M.config()
     end
 
     if server == "lua_ls" then
-      require("neodev").setup {}
+      require("neodev").setup({})
     end
 
     lspconfig[server].setup(opts)
