@@ -47,7 +47,10 @@ M.toggle_inlay_hints = function()
 end
 
 local servers = {
+  "html",
   "lua_ls",
+  "jsonls",
+  "tsserver"
 }
 
 local wk_mappings = {

@@ -1,5 +1,6 @@
 local M = {
   "windwp/nvim-autopairs",
+  lazy = true
 }
 
 M.config = function()
