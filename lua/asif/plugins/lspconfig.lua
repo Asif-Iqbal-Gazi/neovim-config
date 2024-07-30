@@ -55,24 +55,25 @@ local servers = {
 }
 
 local wk_mappings = {
-  name = "LSP",
-  a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-  f = {
+  { "<leader>l",  group = "LSP" },
+  { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
+  {
+    "<leader>lf",
     "<cmd>lua vim.lsp.buf.format({async = true, filter = function(client) return client.name ~= 'typescript-tools' end})<cr>",
-    "Format",
+    desc = "Format",
   },
-  i = { "<cmd>LspInfo<cr>", "LSP Info" },
-  j = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic" },
-  h = { "<cmd>lua require('asif.plugins.lspconfig').toggle_inlay_hints()<cr>", "Hints" },
-  k = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
-  l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-  q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
-  r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+  { "<leader>li", "<cmd>LspInfo<cr>",                                                    desc = "LSP Info" },
+  { "<leader>lj", "<cmd>lua vim.diagnostic.goto_next()<cr>",                             desc = "Next Diagnostic" },
+  { "<leader>lh", "<cmd>lua require('asif.plugins.lspconfig').toggle_inlay_hints()<cr>", desc = "Hints" },
+  { "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev()<cr>",                             desc = "Prev Diagnostic" },
+  { "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>",                                 desc = "CodeLens Action" },
+  { "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>",                            desc = "Quickfix" },
+  { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>",                                   desc = "Rename" },
 }
 
 function M.config()
   local wk = require("which-key")
-  wk.register({ l = wk_mappings }, { prefix = "<leader>" })
+  wk.add(wk_mappings)
 
   local lspconfig = require("lspconfig")
   local icons = require("asif.configs.icons")
