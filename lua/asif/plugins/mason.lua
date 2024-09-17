@@ -6,7 +6,7 @@ local M = {
 }
 
 -- Define servers outside of the function
-local servers = { "html", "clangd", "lua_ls", "jsonls", "pyright", "tsserver" }
+local servers = { "html", "clangd", "lua_ls", "jsonls", "pyright", "ts_ls" }
 
 -- Configuration
 function M.config()

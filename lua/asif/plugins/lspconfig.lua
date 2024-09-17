@@ -51,7 +51,7 @@ local servers = {
   "clangd",
   "lua_ls",
   "jsonls",
-  "tsserver",
+  "ts_ls",
 }
 
 local wk_mappings = {
