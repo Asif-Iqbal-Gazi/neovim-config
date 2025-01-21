@@ -1,6 +1,6 @@
 local M = {
-  "NvChad/nvim-colorizer.lua",
-  event = { "BufReadPost", "BufNewFile" },
+  "catgoose/nvim-colorizer.lua",
+  event = { "BufReadPre" },
 }
 
 function M.config()
@@ -14,6 +14,7 @@ function M.config()
       "html",
       "astro",
       "lua",
+      "toml",
     },
     user_default_options = {
       names = false,
