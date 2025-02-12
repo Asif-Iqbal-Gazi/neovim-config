@@ -10,7 +10,10 @@ local servers = { "html", "clangd", "lua_ls", "jsonls", "pyright", "ts_ls" }
 
 -- Configuration
 function M.config()
-  require("mason").setup({
+  local mason = require("mason")
+  local mason_lspconfig = require("mason-lspconfig")
+
+  mason.setup({
     ui = {
       border = "rounded",
       icons = {
@@ -21,8 +24,9 @@ function M.config()
     },
   })
 
-  require("mason-lspconfig").setup({
+  mason_lspconfig.setup({
     ensure_installed = servers,
+    automatic_installation = true,
   })
 end
 
