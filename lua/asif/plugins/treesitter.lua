@@ -1,7 +1,7 @@
 local M = {
   "nvim-treesitter/nvim-treesitter",
   event = { "BufReadPost", "BufNewFile" },
-  cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+  cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo", "TSUpdate" },
   build = ":TSUpdate",
 }
 
@@ -19,11 +19,14 @@ local languages = {
   "java",
   "javascript",
   "python",
+  "markdown",
+  "markdown_inline",
 }
 
 -- Configuration
 function M.config()
-  require("nvim-treesitter.configs").setup({
+  local treesitter_configs = require("nvim-treesitter.configs")
+  treesitter_configs.setup({
     ensure_installed = languages,
     sync_install = false,
     auto_install = true,
