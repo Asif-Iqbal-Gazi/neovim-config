@@ -6,6 +6,7 @@ return {
         enable = false,
       },
       diagnostics = {
+        disable = { "missing-fields" },
         globals = { "vim", "spec" },
       },
       runtime = {
@@ -17,8 +18,8 @@ return {
       workspace = {
         checkThirdParty = false,
         library = {
-          [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-          [vim.fn.stdpath "config" .. "/lua"] = true,
+          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+          [vim.fn.stdpath("config") .. "/lua"] = true,
         },
       },
       hint = {
@@ -27,7 +28,7 @@ return {
         await = true,
         paramName = "Disable", -- "All" | "Literal" | "Disable"
         paramType = true,
-        semicolon = "All", -- "All" | "SameLine" | "Disable"
+        semicolon = "All",  -- "All" | "SameLine" | "Disable"
         setType = false,
       },
       telemetry = {
