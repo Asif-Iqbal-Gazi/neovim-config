@@ -6,8 +6,8 @@ return {
         enable = false,
       },
       diagnostics = {
-        disable = { "missing-fields" },
         globals = { "vim", "spec" },
+        disable = { "missing-fields" },
       },
       runtime = {
         version = "LuaJIT",

@@ -8,7 +8,7 @@ function M.config()
 
   local formatting = null_ls.builtins.formatting
   local diagnostics = null_ls.builtins.diagnostics
-
+  local completion = null_ls.builtins.completion
   null_ls.setup({
     debug = false,
     sources = {
@@ -22,7 +22,7 @@ function M.config()
       -- formatting.eslint,
       -- null_ls.builtins.diagnostics.flake8,
       -- diagnostics.flake8,
-      null_ls.builtins.completion.spell,
+      completion.spell,
     },
   })
 end
