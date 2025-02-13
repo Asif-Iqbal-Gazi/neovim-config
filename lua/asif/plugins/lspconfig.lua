@@ -4,26 +4,32 @@ local M = {
   dependencies = { "saghen/blink.cmp", "folke/neodev.nvim" },
 }
 
-local on_attach_keymaps = {
-  gd = "<cmd>lua vim.lsp.buf.definition()<CR>",
-  gD = "<cmd>lua vim.lsp.buf.declaration()<CR>",
-  K = "<cmd>lua vim.lsp.buf.hover()<CR>",
-  gI = "<cmd>lua vim.lsp.buf.implementation()<CR>",
-  gr = "<cmd>lua vim.lsp.buf.references()<CR>",
-  gl = "<cmd>lua vim.diagnostic.open_float()<CR>",
-}
-
-M.on_attach = function(client, bufnr)
+-- Function to set keymaps for LSP features
+local function set_keymaps(bufnr)
   local opts = { noremap = true, silent = true }
-  for key, cmd in pairs(on_attach_keymaps) do
+  local keymaps = {
+    gd = "vim.lsp.buf.definition()",   -- Go to definition
+    gD = "vim.lsp.buf.declaration()",  -- Go to declaration
+    K = "vim.lsp.buf.hover()",         -- Show documentation
+    gI = "vim.lsp.buf.implementation()", -- Go to implementation
+    gr = "vim.lsp.buf.references()",   -- Find references
+    gl = "vim.diagnostic.open_float()", -- Show diagnostics
+  }
+  for key, cmd in pairs(keymaps) do
     vim.api.nvim_buf_set_keymap(bufnr, "n", key, cmd, opts)
   end
+end
 
-  if client.supports_method("textDocument/inlayHint") then
+-- Function to run when LSP attaches to a buffer
+M.on_attach = function(client, bufnr)
+  set_keymaps(bufnr)
+
+  -- Enable inlay hints if supported
+  if vim.fn.has("nvim-0.10") == 1 and client.supports_method("textDocument/inlayHint") then
     vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
   end
 
-  -- Newly Added
+  -- Auto-format on save if supported
   if client.supports_method("textDocument/formatting") then
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
@@ -34,9 +40,18 @@ M.on_attach = function(client, bufnr)
   end
 end
 
+-- Function to disable semantic tokens if supported
 M.on_init = function(client, _)
   if client.supports_method("textDocument/semanticTokens") then
     client.server_capabilities.semanticTokensProvider = nil
+  end
+end
+
+-- Toggle inlay hints manually
+M.toggle_inlay_hints = function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  if vim.fn.has("nvim-0.10") == 1 then
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr }), { bufnr })
   end
 end
 
@@ -58,11 +73,7 @@ M.capabilities.textDocument.completion.completionItem = {
   },
 }
 
-M.toggle_inlay_hints = function()
-  local bufnr = vim.api.nvim_get_current_buf()
-  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr }), { bufnr })
-end
-
+-- LSP configuraion setup function
 function M.config()
   local wk = require("which-key")
   local lspconfig = require("lspconfig")

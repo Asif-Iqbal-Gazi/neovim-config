@@ -18,8 +18,8 @@ function M.config()
     keymap = {
       ["<Up>"] = { "select_prev", "fallback" },
       ["<Down>"] = { "select_next", "fallback" },
-      ["<C-p>"] = { "select_prev", "fallback" },
-      ["<C-n>"] = { "select_next", "fallback" },
+      ["<C-k>"] = { "select_prev", "fallback" },
+      ["<C-j>"] = { "select_next", "fallback" },
 
       ["<C-b>"] = { "scroll_documentation_up", "fallback" },
       ["<C-f>"] = { "scroll_documentation_down", "fallback" },
@@ -42,7 +42,7 @@ function M.config()
       },
       ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
-      ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+      ["<C-n>"] = { "show_signature", "hide_signature", "fallback" },
 
       cmdline = {
         preset = "enter",
