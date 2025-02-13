@@ -16,11 +16,10 @@ function M.config()
     -- build = 'nix run .#build-plugin',
 
     keymap = {
-      preset = "none",
       ["<Up>"] = { "select_prev", "fallback" },
       ["<Down>"] = { "select_next", "fallback" },
-      ["<C-k>"] = { "select_prev", "fallback" },
-      ["<C-j>"] = { "select_next", "fallback" },
+      ["<C-p>"] = { "select_prev", "fallback" },
+      ["<C-n>"] = { "select_next", "fallback" },
 
       ["<C-b>"] = { "scroll_documentation_up", "fallback" },
       ["<C-f>"] = { "scroll_documentation_down", "fallback" },
@@ -29,34 +28,49 @@ function M.config()
       ["<C-e>"] = { "hide", "fallback" },
 
       ["<CR>"] = { "accept", "fallback" },
+
       ["<Tab>"] = {
         function(cmp)
           if cmp.snippet_active() then
-            return cmp.select_next()
+            return cmp.accept()
           else
-            return cmp.show()
+            return cmp.select_and_accept()
           end
         end,
-        "select_next",
+        "snippet_forward",
         "fallback",
       },
-      ["<S-Tab>"] = {
-        function(cmp)
-          if cmp.snippet_active() then
-            return cmp.select_prev()
-          else
-            return cmp.show()
-          end
-        end,
-        "select_prev",
-        "fallback",
-      },
+      ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
-      ["<C-n>"] = { "show_signature", "hide_signature", "fallback" },
+      ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+
+      cmdline = {
+        preset = "enter",
+        ["<CR>"] = { "accept", "fallback" },
+
+        ["<Tab>"] = {
+          function(cmp)
+            if cmp.snippet_active() then
+              return cmp.select_next()
+            else
+              return cmp.show()
+            end
+          end,
+          "select_next",
+          "fallback",
+        },
+      },
     },
+    signature = { enabled = true },
     completion = {
+      list = {
+        selection = {
+          preselect = false,
+          auto_insert = false,
+        },
+      },
       menu = {
-        auto_show = false,
+        auto_show = true,
         border = "rounded",
         --        scrolloff = 1,
         scrollbar = false,
