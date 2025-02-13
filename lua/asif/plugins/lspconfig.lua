@@ -1,7 +1,7 @@
 local M = {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
-  dependencies = { { "folke/neodev.nvim" } },
+  dependencies = { "saghen/blink.cmp", "folke/neodev.nvim" },
 }
 
 local on_attach_keymaps = {
@@ -40,7 +40,9 @@ M.on_init = function(client, _)
   end
 end
 
-M.capabilities = vim.lsp.protocol.make_client_capabilities()
+local blink = require("blink.cmp")
+M.capabilities =
+    vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), blink.get_lsp_capabilities() or {})
 M.capabilities.offsetEncoding = { "utf-16" }
 M.capabilities.textDocument.completion.completionItem = {
   documentationFormat = { "markdown", "plaintext" },
@@ -65,6 +67,8 @@ function M.config()
   local wk = require("which-key")
   local lspconfig = require("lspconfig")
   local icons = require("asif.configs.icons")
+
+  -- Register key mappings with descriptions for LSP commands
   local wk_mappings = {
     { "<leader>l",  group = "LSP" },
     { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
@@ -73,30 +77,22 @@ function M.config()
       "<cmd>lua vim.lsp.buf.format({async = true, filter = function(client) return client.name ~= 'typescript-tools' end})<cr>",
       desc = "Format",
     },
-    { "<leader>li", "<cmd>LspInfo<cr>",                                                    desc = "LSP Info" },
+    { "<leader>li", "<cmd>LspInfo<cr>",                        desc = "LSP Info" },
+    { "<leader>lj", "<cmd>lua vim.diagnostic.goto_next()<cr>", desc = "Next Diagnostic" },
     {
-      "<leader>lj",
-      "<cmd>lua vim.diagnostic.goto_next()<cr>",
-      desc = "Next Diagnostic",
+      "<leader>lh",
+      "<cmd>lua require('asif.plugins.lspconfig').toggle_inlay_hints()<cr>",
+      desc = "Toggle Inlay Hints",
     },
-    { "<leader>lh", "<cmd>lua require('asif.plugins.lspconfig').toggle_inlay_hints()<cr>", desc = "Hints" },
-    {
-      "<leader>lk",
-      "<cmd>lua vim.diagnostic.goto_prev()<cr>",
-      desc = "Prev Diagnostic",
-    },
-    {
-      "<leader>ll",
-      "<cmd>lua vim.lsp.codelens.run()<cr>",
-      desc = "CodeLens Action",
-    },
-    { "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>", desc = "Quickfix" },
-    { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>",        desc = "Rename" },
+    { "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev()<cr>",  desc = "Previous Diagnostic" },
+    { "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>",      desc = "CodeLens Action" },
+    { "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>", desc = "Diagnostics Quickfix" },
+    { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>",        desc = "Rename Symbol" },
   }
   wk.add(wk_mappings)
 
-  -- Diagnostic Configuration (Refactored)
-  local diagnostic_config = {
+  -- Configure diagnostic settings
+  vim.diagnostic.config({
     signs = true,
     virtual_text = false,
     update_in_insert = false,
@@ -110,10 +106,9 @@ function M.config()
       header = "",
       prefix = "",
     },
-  }
-  vim.diagnostic.config(diagnostic_config)
+  })
 
-  -- Define signs
+  -- Define LSP diagnostic signs
   local signs = {
     { name = "DiagnosticSignError", text = icons.diagnostics.Error },
     { name = "DiagnosticSignWarn",  text = icons.diagnostics.Warning },
@@ -124,7 +119,7 @@ function M.config()
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
   end
 
-  -- Handlers (Simplified)
+  -- Define handlers for hover and signature help popups
   local handlers = {
     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
     ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
@@ -133,32 +128,32 @@ function M.config()
     vim.lsp.handlers[method] = handler
   end
 
+  -- Set default border style for LSP UI windows
   require("lspconfig.ui.windows").default_options.border = "rounded"
 
-  local servers = {
-    "html",
-    "clangd",
-    "lua_ls",
-    "jsonls",
-    "ts_ls",
-  }
+  -- Define the list of LSP servers to be installed
+  local servers = { "html", "clangd", "lua_ls", "jsonls", "ts_ls" }
 
-  for _, server in pairs(servers) do
+  -- Loop through each server and configure it
+  for _, server in ipairs(servers) do
     local opts = {
       on_attach = M.on_attach,
       capabilities = M.capabilities,
       on_init = M.on_init,
     }
 
+    -- Attempt to load additional settings for specific servers
     local require_ok, settings = pcall(require, "asif.config.lspsettings." .. server)
     if require_ok then
-      opts = vim.tbl_deep_extend("force", settings, opts)
+      opts = vim.tbl_deep_extend("force", opts, settings)
     end
 
+    -- Setup Neovim development environment for Lua LSP
     if server == "lua_ls" then
       require("neodev").setup({})
     end
 
+    -- Apply LSP configuration for the server
     lspconfig[server].setup(opts)
   end
 end
