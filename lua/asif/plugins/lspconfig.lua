@@ -29,15 +29,15 @@ M.on_attach = function(client, bufnr)
     vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
   end
 
-  -- Auto-format on save if supported
-  if client.supports_method("textDocument/formatting") then
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      callback = function()
-        vim.lsp.buf.format({ async = false, bufnr = bufnr })
-      end,
-    })
-  end
+  -- -- Auto-format on save if supported
+  -- if client.supports_method("textDocument/formatting") then
+  --   vim.api.nvim_create_autocmd("BufWritePre", {
+  --     buffer = bufnr,
+  --     callback = function()
+  --       vim.lsp.buf.format({ async = false, bufnr = bufnr })
+  --     end,
+  --   })
+  -- end
 end
 
 -- Function to disable semantic tokens if supported
