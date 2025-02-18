@@ -45,7 +45,11 @@ function M.config()
       ["<C-n>"] = { "show_signature", "hide_signature", "fallback" },
 
       cmdline = {
-        preset = "enter",
+        ["<Up>"] = { "select_prev", "fallback" },
+        ["<Down>"] = { "select_next", "fallback" },
+        ["<C-k>"] = { "select_prev", "fallback" },
+        ["<C-j>"] = { "select_next", "fallback" },
+
         ["<CR>"] = { "accept", "fallback" },
 
         ["<Tab>"] = {
