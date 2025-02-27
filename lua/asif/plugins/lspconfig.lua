@@ -8,12 +8,12 @@ local M = {
 local function set_keymaps(bufnr)
   local opts = { noremap = true, silent = true }
   local keymaps = {
-    gd = "vim.lsp.buf.definition()",   -- Go to definition
-    gD = "vim.lsp.buf.declaration()",  -- Go to declaration
-    K = "vim.lsp.buf.hover()",         -- Show documentation
-    gI = "vim.lsp.buf.implementation()", -- Go to implementation
-    gr = "vim.lsp.buf.references()",   -- Find references
-    gl = "vim.diagnostic.open_float()", -- Show diagnostics
+    gd = "<cmd>lua vim.lsp.buf.definition()<CR>",   -- Go to definition
+    gD = "<cmd>lua vim.lsp.buf.declaration()<CR>",  -- Go to declaration
+    K = "<cmd>lua vim.lsp.buf.hover()<CR>",         -- Show documentation
+    gI = "<cmd>lua vim.lsp.buf.implementation()<CR>", -- Go to implementation
+    gr = "<cmd>lua vim.lsp.buf.references()<CR>",   -- Find references
+    gl = "<cmd>lua vim.diagnostic.open_float()<CR>", -- Show diagnostics
   }
   for key, cmd in pairs(keymaps) do
     vim.api.nvim_buf_set_keymap(bufnr, "n", key, cmd, opts)
@@ -143,7 +143,7 @@ function M.config()
   require("lspconfig.ui.windows").default_options.border = "rounded"
 
   -- Define the list of LSP servers to be installed
-  local servers = { "html", "clangd", "lua_ls", "jsonls", "ts_ls" }
+  local servers = { "html", "clangd", "lua_ls", "jsonls", "ts_ls", "jdtls" }
 
   -- Loop through each server and configure it
   for _, server in ipairs(servers) do

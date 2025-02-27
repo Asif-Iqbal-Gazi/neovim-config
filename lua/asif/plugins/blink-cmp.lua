@@ -1,6 +1,6 @@
 local M = {
   "saghen/blink.cmp",
-  version = "v0.11.0",
+  version = "v0.13.0",
   dependencies = {
     "rafamadriz/friendly-snippets",
   },
@@ -44,8 +44,14 @@ function M.config()
 
       ["<C-n>"] = { "show_signature", "hide_signature", "fallback" },
 
-      cmdline = {
-        preset = "enter",
+    },
+    cmdline = {
+      keymap = {
+        ["<Up>"] = { "select_prev", "fallback" },
+        ["<Down>"] = { "select_next", "fallback" },
+        ["<C-k>"] = { "select_prev", "fallback" },
+        ["<C-j>"] = { "select_next", "fallback" },
+
         ["<CR>"] = { "accept", "fallback" },
 
         ["<Tab>"] = {
@@ -61,6 +67,7 @@ function M.config()
         },
       },
     },
+
     signature = { enabled = true },
     completion = {
       list = {
