@@ -36,6 +36,10 @@ keymap("n", "*", "*zz", opts)
 keymap("n", "#", "#zz", opts)
 keymap("n", "g*", "g*zz", opts)
 keymap("n", "g#", "g#zz", opts)
+keymap("n", "<C-d>", "<C-d>zz", opts)
+keymap("n", "<C-u>", "<C-u>zz", opts)
+keymap("n", "<C-f>", "<C-f>zz", opts)
+keymap("n", "<C-b>", "<C-b>zz", opts)
 
 -------------------------------------- Visual Mode --------------------------------------
 
