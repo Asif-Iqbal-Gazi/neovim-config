@@ -1,6 +1,6 @@
 local M = {
   "saghen/blink.cmp",
-  version = "v0.13.1",
+  version = "1.*",
   dependencies = {
     "rafamadriz/friendly-snippets",
   },
