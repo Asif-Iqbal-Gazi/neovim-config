@@ -156,7 +156,7 @@ function M.config()
   require("lspconfig.ui.windows").default_options.border = "rounded"
 
   -- Define the list of LSP servers to be installed
-  local servers = { "html", "clangd", "lua_ls", "jsonls", "ts_ls", "jdtls", "pyright" }
+  local servers = { "html", "clangd", "lua_ls", "jsonls", "ts_ls", "jdtls", "pyright", "ruff" }
 
   -- Loop through each server and configure it
   for _, server in ipairs(servers) do

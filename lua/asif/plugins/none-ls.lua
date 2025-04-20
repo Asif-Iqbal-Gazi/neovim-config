@@ -19,11 +19,11 @@ function M.config()
     debug = false,
     sources = {
       formatting.stylua,
-      -- require("none-ls.formatting.ruff").with({
-      --   extra_args = { "--extend-select", "I" },
-      -- }),
-      -- require("none-ls.formatting.ruff_format"),
-      -- -- formatting.prettier,
+      require("none-ls.formatting.ruff").with({
+        extra_args = { "--extend-select", "I" },
+      }),
+      require("none-ls.formatting.ruff_format"),
+      -- formatting.prettier,
       -- formatting.black,
       formatting.prettier.with({
         filetypes = { "json", "yaml", "markdown" },
