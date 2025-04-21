@@ -2,18 +2,54 @@ local M = {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = { "saghen/blink.cmp", "folke/neodev.nvim" },
+    keys = {
+        -- Code Actions, Rename & Format
+        { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
+        { "<leader>li", "<cmd>LspInfo<cr>",                       desc = "Code LSP Info" },
+        { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>",      desc = "Code Rename Symbol" },
+        {
+            "<leader>lf",
+            "<cmd>lua vim.lsp.buf.format({async = true, filter = function(client) return client.name ~= 'typescript-tools' end})<cr>",
+            desc = "Format",
+        },
+
+        -- Diagnostics
+        { "<leader>ldd", "<cmd>FzfLua diagnostics_document<cr>",     desc = "Find Document Diagnostics" },
+        { "<leader>ldw", "<cmd>FzfLua diagnostics_workspace<cr>",    desc = "Find Workspace Diagnostics" },
+        { "<leader>lj",  "<cmd>lua vim.diagnostic.goto_next()<cr>",  desc = "Next Diagnostic" },
+        { "<leader>lk",  "<cmd>lua vim.diagnostic.goto_prev()<cr>",  desc = "Previous Diagnostic" },
+        { "<leader>lq",  "<cmd>lua vim.diagnostic.setloclist()<cr>", desc = "Diagnostics Quickfix" },
+
+        -- Inlay Hints & CodeLens
+        {
+            "<leader>lh",
+            "<cmd>lua require('asif.plugins.lspconfig').toggle_inlay_hints()<cr>",
+            desc = "Toggle Inlay Hints",
+        },
+        { "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>",        desc = "CodeLens Action" },
+
+        -- Info & Rename
+
+        -- Symbols
+        { "<leader>ls", "<cmd>FzfLua lsp_document_symbols<cr>",       desc = "Find Document Symbols" },
+        { "<leader>lS", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", desc = "Find Workspace Symbols" },
+    }
 }
 
 -- Function to set keymaps for LSP features
 local function set_keymaps(bufnr)
     local opts = { noremap = true, silent = true }
     local keymaps = {
-        gd = "<cmd>lua vim.lsp.buf.definition()<CR>",     -- Go to definition
-        gD = "<cmd>lua vim.lsp.buf.declaration()<CR>",    -- Go to declaration
-        K = "<cmd>lua vim.lsp.buf.hover()<CR>",           -- Show documentation
-        gI = "<cmd>lua vim.lsp.buf.implementation()<CR>", -- Go to implementation
-        gr = "<cmd>lua vim.lsp.buf.references()<CR>",     -- Find references
-        gl = "<cmd>lua vim.diagnostic.open_float()<CR>",  -- Show diagnostics
+        -- gd = "<cmd>lua vim.lsp.buf.definition()<CR>",     -- Go to definition
+        -- gD = "<cmd>lua vim.lsp.buf.declaration()<CR>",    -- Go to declaration
+        -- gI = "<cmd>lua vim.lsp.buf.implementation()<CR>", -- Go to implementation
+        -- gr = "<cmd>lua vim.lsp.buf.references()<CR>",     -- Find references
+        gr = "<cmd>FzfLua lsp_references<CR>",           -- Show References
+        gd = "<cmd>FzfLua lsp_definitions<CR>",          -- Show Definition
+        gD = "<cmd>FzfLua lsp_declarations<CR>",         -- Show Declarations
+        gI = "<cmd>FzfLua lsp_implementations<CR>",      -- Show Implementations
+        gl = "<cmd>lua vim.diagnostic.open_float()<CR>", -- Show diagnostics
+        K = "<cmd>lua vim.lsp.buf.hover()<CR>",          -- Show documentation
     }
     for key, cmd in pairs(keymaps) do
         vim.api.nvim_buf_set_keymap(bufnr, "n", key, cmd, opts)
@@ -75,40 +111,8 @@ M.capabilities.textDocument.completion.completionItem = {
 
 -- LSP configuraion setup function
 function M.config()
-    local wk = require("which-key")
     local lspconfig = require("lspconfig")
     local icons = require("asif.configs.icons")
-
-    -- Register key mappings with descriptions for LSP commands
-    local wk_mappings = {
-        { "<leader>ld",  "<cmd>FzfLua lsp_definitions<cr>",        desc = "Find LSP Definitions" },
-        { "<leader>lD",  "<cmd>FzfLua lsp_declarations<cr>",       desc = "Find LSP Declarations" },
-        { "<leader>li",  "<cmd>FzfLua lsp_implementations<cr>",    desc = "Find LSP Implementations" },
-        { "<leader>lr",  "<cmd>FzfLua lsp_references<cr>",         desc = "Find LSP References" },
-        { "<leader>ls",  "<cmd>FzfLua lsp_document_symbols<cr>",   desc = "Find Document Symbols" },
-        { "<leader>lS",  "<cmd>FzfLua lsp_workspace_symbols<cr>",  desc = "Find Workspace Symbols" },
-        { "<leader>ldd", "<cmd>FzfLua diagnostics_document<cr>",   desc = "Find Document Diagnostics" },
-        { "<leader>ldw", "<cmd>FzfLua diagnostics_workspace<cr>",  desc = "Find Workspace Diagnostics" },
-
-        { "<leader>la",  "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
-        {
-            "<leader>lf",
-            "<cmd>lua vim.lsp.buf.format({async = true, filter = function(client) return client.name ~= 'typescript-tools' end})<cr>",
-            desc = "Format",
-        },
-        { "<leader>li", "<cmd>LspInfo<cr>",                        desc = "LSP Info" },
-        { "<leader>lj", "<cmd>lua vim.diagnostic.goto_next()<cr>", desc = "Next Diagnostic" },
-        {
-            "<leader>lh",
-            "<cmd>lua require('asif.plugins.lspconfig').toggle_inlay_hints()<cr>",
-            desc = "Toggle Inlay Hints",
-        },
-        { "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev()<cr>",  desc = "Previous Diagnostic" },
-        { "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>",      desc = "CodeLens Action" },
-        { "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>", desc = "Diagnostics Quickfix" },
-        { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>",        desc = "Rename Symbol" },
-    }
-    wk.add(wk_mappings)
 
     -- Configure diagnostic settings
     vim.diagnostic.config({
