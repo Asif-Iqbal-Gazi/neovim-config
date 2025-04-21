@@ -1,14 +1,11 @@
 local M = {
-  "nvim-lualine/lualine.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
-}
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+        options = { ignore_focus = { "NvimTree" } },
+        extensions = { "quickfix", "man", "oil", "fzf", "fugitive" },
 
--- Configuration
-function M.config()
-  require("lualine").setup({
-    options = { ignore_focus = { "NvimTree" } },
-    extensions = { "quickfix", "man", "fugitive" },
-  })
-end
+    }
+}
 
 return M
