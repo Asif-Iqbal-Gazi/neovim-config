@@ -73,3 +73,7 @@ keymap("n", "<leader>w", ":lua vim.wo.wrap = not vim.wo.wrap<CR>", opts)
 
 -- Map <C-;> in terminal mode to exit insert mode
 vim.api.nvim_set_keymap('t', '<C-;>', '<C-\\><C-n>', opts)
+
+-------------------------------------- Oil --------------------------------------
+-- Oil Keymap
+keymap("n", "-", "<cmd>Oil--float<CR>", { desc = "Open Parent Directory in Oil" })
