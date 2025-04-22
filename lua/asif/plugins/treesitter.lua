@@ -20,7 +20,6 @@ local M = {
             "python",
             "markdown",
             "markdown_inline",
-
         },
         sync_install = false,
         -- Autoinstall languages that are not installed
@@ -43,7 +42,7 @@ local M = {
                 node_decremental = "<S-TAB>",
             },
         },
-    }
+    },
 }
 
 return M

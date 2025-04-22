@@ -1,5 +1,5 @@
 local M = {
-    'stevearc/oil.nvim',
+    "stevearc/oil.nvim",
     -- Optional dependencies
     -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
     dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
@@ -10,7 +10,7 @@ local M = {
     opts = {},
     keys = {
         { "-", "<cmd>Oil --float<cr>", desc = "Open Parent Directory in Oil" },
-    }
+    },
 }
 
 return M

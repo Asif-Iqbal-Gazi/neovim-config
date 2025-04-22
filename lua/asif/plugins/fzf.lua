@@ -28,10 +28,9 @@ local M = {
         { "<leader>fs", "<cmd>FzfLua spell_suggest<cr>", desc = "Find Spelling Suggestions" },
         { "<leader>fs", "<cmd>FzfLua spell_suggest<cr>", desc = "Find Spelling Suggestions" },
 
-
         -- Optional: Project Picker (if Telescope extension enabled)
         -- { "<leader>fp", "<cmd>lua require('telescope').extensions.projects.projects()<cr>", desc = "Find Projects" },
-    }
+    },
 }
 
 return M

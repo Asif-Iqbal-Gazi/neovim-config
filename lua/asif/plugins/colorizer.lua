@@ -20,8 +20,7 @@ local M = {
             tailwind = "both",
         },
         buftypes = {},
-
-    }
+    },
 }
 
 return M

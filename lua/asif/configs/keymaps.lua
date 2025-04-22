@@ -53,8 +53,8 @@ keymap("v", ">", ">gv", opts)
 keymap("x", "p", [["_dP]])
 
 -- Add LSP mouse menu items
-vim.cmd [[:amenu 10.100 mousemenu.Goto\ Definition <cmd>lua vim.lsp.buf.definition()<CR>]]
-vim.cmd [[:amenu 10.110 mousemenu.References <cmd>lua vim.lsp.buf.references()<CR>]]
+vim.cmd([[:amenu 10.100 mousemenu.Goto\ Definition <cmd>lua vim.lsp.buf.definition()<CR>]])
+vim.cmd([[:amenu 10.110 mousemenu.References <cmd>lua vim.lsp.buf.references()<CR>]])
 
 -- Popup mouse menu on right click or tab
 vim.keymap.set("n", "<RightMouse>", "<cmd>:popup mousemenu<CR>")
@@ -72,4 +72,4 @@ keymap({ "n", "x" }, "k", "gk", opts)
 keymap("n", "<leader>w", ":lua vim.wo.wrap = not vim.wo.wrap<CR>", opts)
 
 -- Map <C-;> in terminal mode to exit insert mode
-vim.api.nvim_set_keymap('t', '<C-;>', '<C-\\><C-n>', opts)
+vim.api.nvim_set_keymap("t", "<C-;>", "<C-\\><C-n>", opts)

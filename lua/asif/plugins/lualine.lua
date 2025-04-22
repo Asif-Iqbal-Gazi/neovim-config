@@ -4,8 +4,7 @@ local M = {
     opts = {
         options = { ignore_focus = { "NvimTree" } },
         extensions = { "quickfix", "man", "oil", "fzf", "fugitive" },
-
-    }
+    },
 }
 
 return M

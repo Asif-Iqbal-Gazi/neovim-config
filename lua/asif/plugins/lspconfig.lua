@@ -3,7 +3,7 @@ local M = {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         "saghen/blink.cmp",
-        "folke/neodev.nvim"
+        "folke/neodev.nvim",
     },
     keys = {
         -- Code Actions, Rename & Format
@@ -36,7 +36,7 @@ local M = {
         -- Symbols
         { "<leader>ls", "<cmd>FzfLua lsp_document_symbols<cr>",       desc = "Find Document Symbols" },
         { "<leader>lS", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", desc = "Find Workspace Symbols" },
-    }
+    },
 }
 
 -- Function to set keymaps for LSP features
@@ -47,12 +47,12 @@ local function set_keymaps(bufnr)
         -- gD = "<cmd>lua vim.lsp.buf.declaration()<CR>",    -- Go to declaration
         -- gI = "<cmd>lua vim.lsp.buf.implementation()<CR>", -- Go to implementation
         -- gr = "<cmd>lua vim.lsp.buf.references()<CR>",     -- Find references
-        gr = "<cmd>FzfLua lsp_references<CR>",           -- Show References
-        gd = "<cmd>FzfLua lsp_definitions<CR>",          -- Show Definition
-        gD = "<cmd>FzfLua lsp_declarations<CR>",         -- Show Declarations
-        gI = "<cmd>FzfLua lsp_implementations<CR>",      -- Show Implementations
+        gr = "<cmd>FzfLua lsp_references<CR>",     -- Show References
+        gd = "<cmd>FzfLua lsp_definitions<CR>",    -- Show Definition
+        gD = "<cmd>FzfLua lsp_declarations<CR>",   -- Show Declarations
+        gI = "<cmd>FzfLua lsp_implementations<CR>", -- Show Implementations
         gl = "<cmd>lua vim.diagnostic.open_float()<CR>", -- Show diagnostics
-        K = "<cmd>lua vim.lsp.buf.hover()<CR>",          -- Show documentation
+        K = "<cmd>lua vim.lsp.buf.hover()<CR>",    -- Show documentation
     }
     for key, cmd in pairs(keymaps) do
         vim.api.nvim_buf_set_keymap(bufnr, "n", key, cmd, opts)

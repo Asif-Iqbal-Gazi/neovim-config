@@ -3,12 +3,12 @@ local M = {
     event = "VeryLazy",
     opts = {
         win = {
-            border = "rounded",       -- "none", "single", "double", "shadow"
+            border = "rounded", -- "none", "single", "double", "shadow"
             padding = { 1, 2, 1, 2 }, -- top, right, bottom, left
             wo = {
-                winblend = 0,         -- 0 = fully opaque, 100 = fully transparent
+                winblend = 0, -- 0 = fully opaque, 100 = fully transparent
             },
-            zindex = 1000,            -- position WhichKey above other floating windows
+            zindex = 1000,   -- position WhichKey above other floating windows
         },
         disable = {
             buftypes = {},
@@ -35,8 +35,8 @@ local M = {
             { "<leader>al", "<cmd>+tabmove<CR>",          desc = "Move Right" },
 
             { "<leader>T",  group = "Treesitter" },
-        }
-    }
+        },
+    },
 }
 
 return M
