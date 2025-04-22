@@ -2,8 +2,6 @@ local M = {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig",
         "saghen/blink.cmp",
         "folke/neodev.nvim"
     },
@@ -116,24 +114,8 @@ M.capabilities.textDocument.completion.completionItem = {
 
 -- LSP configuraion setup function
 function M.config()
-    local mason = require('mason')
-    local mason_lspconfig = require('mason-lspconfig')
     local lspconfig = require("lspconfig")
     local icons = require("asif.configs.icons")
-
-    -- Configure Mason UI
-    mason.setup({
-        ui = {
-            border = "rounded",
-            icons = {
-                package_pending = " ",
-                package_installed = "󰄳 ",
-                package_uninstalled = " 󰚌",
-            },
-        },
-    })
-
-
 
     -- Configure diagnostic settings
     vim.diagnostic.config({
@@ -171,12 +153,6 @@ function M.config()
 
     -- Define the list of LSP servers to be installed
     local servers = { "html", "clangd", "lua_ls", "jsonls", "ts_ls", "jdtls", "pyright", "ruff" }
-
-    -- Ensure mason-lspconfig install our server
-    mason_lspconfig.setup({
-        ensure_installed = servers,
-        automatic_installation = true,
-    })
 
     -- Loop through each server and configure it
     for _, server in ipairs(servers) do
