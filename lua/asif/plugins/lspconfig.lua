@@ -94,28 +94,34 @@ M.toggle_inlay_hints = function()
     end
 end
 
-local blink = require("blink.cmp")
-M.capabilities =
-    vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), blink.get_lsp_capabilities() or {})
-M.capabilities.offsetEncoding = { "utf-16" }
-M.capabilities.textDocument.completion.completionItem = {
-    documentationFormat = { "markdown", "plaintext" },
-    snippetSupport = true,
-    preselectSupport = true,
-    insertReplaceSupport = true,
-    labelDetailsSupport = true,
-    deprecatedSupport = true,
-    commitCharactersSupport = true,
-    tagSupport = { valueSet = { 1 } },
-    resolveSupport = {
-        properties = { "documentation", "detail", "additionalTextEdits" },
-    },
-}
+-- Make capabilities
+--M.capabilities = vim.lsp.protocol.make_client_capabilities()
+
+-- local blink = require("blink.cmp")
+-- M.capabilities =
+--     vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), blink.get_lsp_capabilities() or {})
+-- M.capabilities.offsetEncoding = { "utf-16" }
+-- M.capabilities.textDocument.completion.completionItem = {
+--     documentationFormat = { "markdown", "plaintext" },
+--     snippetSupport = true,
+--     preselectSupport = true,
+--     insertReplaceSupport = true,
+--     labelDetailsSupport = true,
+--     deprecatedSupport = true,
+--     commitCharactersSupport = true,
+--     tagSupport = { valueSet = { 1 } },
+--     resolveSupport = {
+--         properties = { "documentation", "detail", "additionalTextEdits" },
+--     },
+-- }
 
 -- LSP configuraion setup function
 function M.config()
     local lspconfig = require("lspconfig")
+    -- local blink = require("blink.cmp")
     local icons = require("asif.configs.icons")
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
     -- Configure diagnostic settings
     vim.diagnostic.config({
@@ -158,7 +164,7 @@ function M.config()
     for _, server in ipairs(servers) do
         local opts = {
             on_attach = M.on_attach,
-            capabilities = M.capabilities,
+            capabilities = capabilities,
             on_init = M.on_init,
         }
 
