@@ -7,14 +7,14 @@ function M.config()
         flavour = "auto",
         transparent_background = true,
         integrations = {
-            cmp = true,
-            nvimtree = true,
+            blink_cmp = true,
+            fzf = true,
             treesitter = true,
             mason = true,
             indent_blankline = {
-                enabled = false,
-                scope_color = "green", -- catppuccin color (eg. `lavender`) Default: text
-                colored_indent_levels = false,
+                enabled = true,
+                scope_color = "lavender", -- catppuccin color (eg. `lavender`) Default: text
+                colored_indent_levels = true,
             },
             native_lsp = {
                 enabled = true,
@@ -37,10 +37,6 @@ function M.config()
             navic = {
                 enabled = true,
                 custom_bg = "NONE", -- "lualine" will set background to mantle
-            },
-            telescope = {
-                enabled = true,
-                -- style = "nvchad"
             },
             which_key = true,
         },
