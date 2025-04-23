@@ -26,7 +26,7 @@ local M = {
         -- Inlay Hints & CodeLens
         {
             "<leader>lh",
-            "<cmd>lua require('asif.plugins.lspconfig').toggle_inlay_hints()<cr>",
+            "<cmd>lua require('plugins.lspconfig').toggle_inlay_hints()<cr>",
             desc = "Toggle Inlay Hints",
         },
         { "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>",        desc = "CodeLens Action" },
@@ -119,7 +119,7 @@ end
 function M.config()
     local lspconfig = require("lspconfig")
     -- local blink = require("blink.cmp")
-    local icons = require("asif.configs.icons")
+    local icons = require("configs.icons")
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
@@ -169,7 +169,7 @@ function M.config()
         }
 
         -- Attempt to load additional settings for specific servers
-        local require_ok, settings = pcall(require, "asif.config.lspsettings." .. server)
+        local require_ok, settings = pcall(require, "config.lspsettings." .. server)
         if require_ok then
             opts = vim.tbl_deep_extend("force", opts, settings)
         end

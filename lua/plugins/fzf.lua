@@ -26,7 +26,7 @@ local M = {
 
         -- Misc
         { "<leader>fs", "<cmd>FzfLua spell_suggest<cr>", desc = "Find Spelling Suggestions" },
-        { "<leader>fs", "<cmd>FzfLua spell_suggest<cr>", desc = "Find Spelling Suggestions" },
+        { "<leader>f?", "<cmd>FzfLua builtin<cr>",       desc = "Find Builtin Commands in FzfLua" },
 
         -- Optional: Project Picker (if Telescope extension enabled)
         -- { "<leader>fp", "<cmd>lua require('telescope').extensions.projects.projects()<cr>", desc = "Find Projects" },

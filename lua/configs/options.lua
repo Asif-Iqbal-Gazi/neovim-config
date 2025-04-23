@@ -9,14 +9,17 @@ local opt = vim.opt
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 g.netrw_banner = 0 -- Hide netrw banner
-g.netrw_mouse = 2  -- Enable mouse support in netrw
+g.netrw_mouse = 2 -- Enable mouse support in netrw
+
+-- Enable Nerd Font support (used by plugins like lualine, telescope)
+g.have_nerd_font = true
 
 --------------------------------------------------------------------------------
 -- 🧭 UI Settings
 --------------------------------------------------------------------------------
 
 -- Status line
-opt.laststatus = 3   -- Global statusline
+opt.laststatus = 3 -- Global statusline
 opt.showmode = false -- Don't show mode (handled by statusline plugin)
 
 -- Line numbers
@@ -38,7 +41,7 @@ opt.fillchars = { eob = " " } -- Remove ~ at end of buffer
 -- GUI
 opt.termguicolors = true -- Enable true color support
 
--- Scroll
+-- Scroll offset
 opt.scrolloff = 10 -- Minimum lines above/below cursor
 
 --------------------------------------------------------------------------------
@@ -53,12 +56,10 @@ opt.splitbelow = true
 opt.splitright = true
 
 -- Timeouts
-opt.timeoutlen = 400 -- Faster mappings
+opt.timeoutlen = 300 -- Faster mappings
 
--- Completion
+-- Completion popup
 opt.completeopt = { "menuone", "noselect" }
-
--- Popup menu
 opt.pumheight = 10
 opt.pumblend = 10 -- Transparency
 
@@ -75,8 +76,11 @@ opt.clipboard = "unnamedplus" -- Sync with system clipboard
 -- vim.cmd([[set iskeyword+=-]]) -- Treat dash-separated words as one
 opt.iskeyword:append("-") -- Treat dash-separated words as one
 
+-- Show live preview of :substitute
+opt.inccommand = "split"
+
 --------------------------------------------------------------------------------
--- 🌐 vim.o Global-only Settings
+-- 🌐 Global-only vim.o Settings
 --------------------------------------------------------------------------------
 
 vim.o.winborder = "rounded" -- Rounded borders for floating windows
@@ -87,19 +91,19 @@ vim.o.winborder = "rounded" -- Rounded borders for floating windows
 --------------------------------------------------------------------------------
 
 opt.ignorecase = true -- Case insensitive search...
-opt.smartcase = true  -- ...unless uppercase is used
+opt.smartcase = true -- ...unless uppercase is used
 
 --------------------------------------------------------------------------------
 -- ✍️ Editing & Formatting
 --------------------------------------------------------------------------------
 
 -- Indentation
+opt.tabstop = 4 -- Number of spaces tabs count for
 opt.expandtab = true -- Use spaces instead of tabs
-opt.shiftwidth = 4   -- Size of an indent
-opt.tabstop = 4      -- Number of spaces tabs count for
-opt.softtabstop = 4
+opt.softtabstop = 4 -- Number of spaces inserted instead of TAB character
+opt.shiftwidth = 4 -- Number of spaces inserted when indenting
 opt.smarttab = true
-opt.smartindent = true
+opt.smartindent = true -- syntax aware indentations for newline inserts
 opt.autoindent = true
 opt.breakindent = true
 
@@ -111,10 +115,10 @@ opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 -- 💾 Files & Backups
 --------------------------------------------------------------------------------
 
-opt.swapfile = false    -- Disable swapfile
+opt.swapfile = false -- Disable swapfile
 opt.writebackup = false -- Disable write backup
-opt.undofile = true     -- Enable persistent undo
-opt.updatetime = 100    -- Faster updates (good for plugins)
+opt.undofile = true -- Enable persistent undo
+opt.updatetime = 100 -- Faster updates (good for plugins)
 
 -- File encoding (uncomment if needed)
 -- opt.fileencoding = "utf-8"
