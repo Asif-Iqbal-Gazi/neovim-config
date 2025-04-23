@@ -72,7 +72,7 @@ keymap({ "n", "x" }, "k", "gk", opts)
 -- 🧰 Utilities
 --------------------------------------------------------------------------------
 -- Toggle soft wrap mode
-keymap("n", "<leader>w", ":lua vim.wo.wrap = not vim.wo.wrap<CR>", opts)
+-- keymap("n", "<leader>w", ":lua vim.wo.wrap = not vim.wo.wrap<CR>", opts)
 
 --------------------------------------------------------------------------------
 -- 🔁 Terminal Mode Enhancements
