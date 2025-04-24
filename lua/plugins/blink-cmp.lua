@@ -21,58 +21,11 @@ local M = {
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
         --keymap = { preset = "default" },
-        keymap = {
-            preset = 'enter'
-            -- ["<Up>"] = { "select_prev", "fallback" },
-            -- ["<Down>"] = { "select_next", "fallback" },
-            -- ["<C-k>"] = { "select_prev", "fallback" },
-            -- ["<C-j>"] = { "select_next", "fallback" },
-            --
-            -- ["<C-b>"] = { "scroll_documentation_up", "fallback" },
-            -- ["<C-f>"] = { "scroll_documentation_down", "fallback" },
-            --
-            -- ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-            -- ["<C-e>"] = { "hide", "fallback" },
-            --
-            -- ["<CR>"] = { "accept", "fallback" },
-            --
-            -- ["<Tab>"] = {
-            --     function(cmp)
-            --         if cmp.snippet_active() then
-            --             return cmp.accept()
-            --         else
-            --             return cmp.select_and_accept()
-            --         end
-            --     end,
-            --     "snippet_forward",
-            --     "fallback",
-            -- },
-            -- ["<S-Tab>"] = { "snippet_backward", "fallback" },
-            --
-            -- ["<C-n>"] = { "show_signature", "hide_signature", "fallback" },
-        },
+        keymap = { preset = 'enter' },
         cmdline = {
             keymap = {
                 preset = 'cmdline',
                 ["<CR>"] = { "accept", "fallback" },
-                -- ["<Up>"] = { "select_prev", "fallback" },
-                -- ["<Down>"] = { "select_next", "fallback" },
-                -- ["<C-k>"] = { "select_prev", "fallback" },
-                -- ["<C-j>"] = { "select_next", "fallback" },
-                --
-                -- ["<CR>"] = { "accept", "fallback" },
-                --
-                -- ["<Tab>"] = {
-                --     function(cmp)
-                --         if cmp.snippet_active() then
-                --             return cmp.select_next()
-                --         else
-                --             return cmp.show()
-                --         end
-                --     end,
-                --     "select_next",
-                --     "fallback",
-                -- },
             },
         },
 
