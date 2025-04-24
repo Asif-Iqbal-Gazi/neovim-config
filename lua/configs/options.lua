@@ -112,6 +112,17 @@ opt.list = true
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 --------------------------------------------------------------------------------
+-- 🪄 Folding
+--------------------------------------------------------------------------------
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldenable = true        -- Enable folding by default
+vim.opt.foldlevel = 99           -- Open all folds by default
+vim.opt.foldlevelstart = 99      -- Start with all folds open
+
+
+--------------------------------------------------------------------------------
 -- 💾 Files & Backups
 --------------------------------------------------------------------------------
 
