@@ -27,7 +27,7 @@ require("lazy").setup({
 			not_loaded = "",
 		},
 	},
-	checker = { enabled = true, notify = true },
+	checker = { enabled = false, notify = true },
 	rocks = { enabled = false },
 	change_detection = {
 		enabled = true,
