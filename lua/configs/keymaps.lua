@@ -24,10 +24,11 @@ keymap("n", "<C-i>", "<C-i>", opts)
 --------------------------------------------------------------------------------
 -- Move between windows using Alt + hjkl
 -- NOTE: tmux-navigator takes care of this for split windows but not for quickfix window)
-keymap("n", "<A-h>", "<C-w>h", opts)
-keymap("n", "<A-j>", "<C-w>j", opts)
-keymap("n", "<A-k>", "<C-w>k", opts)
-keymap("n", "<A-l>", "<C-w>l", opts)
+-- NOTE: tmux-navigator takes care of this, with latest update)
+-- keymap("n", "<A-h>", "<C-w>h", opts)
+-- keymap("n", "<A-j>", "<C-w>j", opts)
+-- keymap("n", "<A-k>", "<C-w>k", opts)
+-- keymap("n", "<A-l>", "<C-w>l", opts)
 
 -- Switch between alternate buffers using Alt+Tab
 keymap("n", "<A-tab>", "<c-6>", opts)
