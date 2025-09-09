@@ -66,8 +66,8 @@ keymap({ "v", "o", "x" }, "<A-l>", "g_", opts)
 keymap("x", "p", [["_dP]])
 
 -- Navigate by visual lines (e.g., with softwrap)
-keymap({ "n", "x" }, "j", "gj", opts)
-keymap({ "n", "x" }, "k", "gk", opts)
+-- keymap({ "n", "x" }, "j", "gj", opts)
+-- keymap({ "n", "x" }, "k", "gk", opts)
 
 --------------------------------------------------------------------------------
 -- 🧰 Utilities
