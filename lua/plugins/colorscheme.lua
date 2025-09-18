@@ -5,7 +5,24 @@ function M.config()
     vim.cmd.colorscheme("default")
     require("catppuccin").setup({
         flavour = "auto",
+        background = {
+            light = "latte",
+            dark = "mocha",
+        },
         transparent_background = true,
+        float = {
+            transparent = true,
+            solid = false,
+        },
+        show_end_of_buffer = false,
+        term_colors = true,
+        color_overrides = {},
+        highlight_overrides = {
+            mocha = function(mocha_colors)
+                return { LineNr = { fg = mocha_colors.overlay2, }, }
+            end,
+        },
+        auto_integrations = true,
         integrations = {
             blink_cmp = true,
             fzf = true,
