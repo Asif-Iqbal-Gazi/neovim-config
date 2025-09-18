@@ -12,6 +12,7 @@ local M = {
             "astro",
             "lua",
             "toml",
+            "markdown",
         },
         user_default_options = {
             names = false,
