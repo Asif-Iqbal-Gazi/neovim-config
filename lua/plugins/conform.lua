@@ -19,9 +19,18 @@ local M = {
     opts = {
         -- Define your formatters
         formatters_by_ft = {
-            lua = { "stylua" },
-            python = { "ruff", "black" },
+            css = { "prettierd" },
+            html = { "prettierd" },
             javascript = { "prettierd", "prettier", stop_after_first = true },
+            javascriptreact = { "prettierd" },
+            json = { "prettierd" },
+            lua = { "stylua" },
+            markdown = { "prettierd" },
+            python = { "ruff_organize_imports", "ruff_fix", "ruff_format" },
+            sh = { "shfmt" },
+            typescript = { "prettierd" },
+            typescriptreact = { "prettierd" },
+            yaml = { "prettierd" },
         },
         -- Set default options
         default_format_opts = {

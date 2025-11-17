@@ -153,5 +153,5 @@ vim.lsp.config("*", {
 })
 
 -- List of language servers to enable
-local servers = { "html", "clangd", "lua_ls", "jsonls", "ts_ls", "jdtls", "pyright", "ruff", "rust_analyzer" }
+local servers = { "html", "clangd", "lua_ls", "jsonls", "ts_ls", "jdtls", "prettierd", "ruff", "rust_analyzer", "shfmt" }
 vim.lsp.enable(servers)
