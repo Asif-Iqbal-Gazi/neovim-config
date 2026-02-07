@@ -37,7 +37,8 @@ autocmd("VimResized", {
 -- Highlight text on yank (copy)
 autocmd("TextYankPost", {
     callback = function()
-        vim.highlight.on_yank({ higroup = "Visual", timeout = 40 })
+        -- vim.highlight.on_yank({ higroup = "Visual", timeout = 40 })
+        vim.hl.on_yank({ higroup = "Visual", timeout = 40 })
     end,
 })
 
