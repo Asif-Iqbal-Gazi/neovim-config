@@ -153,5 +153,6 @@ vim.lsp.config("*", {
 })
 
 -- List of language servers to enable
-local servers = { "html", "clangd", "lua_ls", "jsonls", "ts_ls", "jdtls", "prettierd", "ruff", "rust_analyzer", "shfmt" }
+-- Note: prettierd and shfmt are formatters (handled by conform.nvim), not LSP servers
+local servers = { "html", "clangd", "lua_ls", "jsonls", "ts_ls", "jdtls", "ruff", "rust_analyzer" }
 vim.lsp.enable(servers)
