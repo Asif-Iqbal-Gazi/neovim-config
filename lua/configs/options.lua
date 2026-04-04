@@ -11,6 +11,12 @@ g.loaded_netrwPlugin = 1
 g.netrw_banner = 0 -- Hide netrw banner
 g.netrw_mouse = 2 -- Enable mouse support in netrw
 
+-- Disable unused providers (silences checkhealth warnings)
+g.loaded_node_provider = 0
+g.loaded_perl_provider = 0
+g.loaded_python3_provider = 0
+g.loaded_ruby_provider = 0
+
 -- Enable Nerd Font support (used by plugins like lualine, telescope)
 g.have_nerd_font = true
 
