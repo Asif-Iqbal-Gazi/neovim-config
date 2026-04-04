@@ -1,6 +1,6 @@
 # 🛠️ My Neovim Config
 
-A modular and minimal Neovim configuration tailored for performance, modern UX, and power-user features — all built on top of Neovim **0.11+**.
+A modular and minimal Neovim configuration tailored for performance, modern UX, and power-user features — all built on top of Neovim **0.12+**.
 
 > ✨ Designed for developers who want clarity, speed, and control.
 
@@ -11,7 +11,7 @@ A modular and minimal Neovim configuration tailored for performance, modern UX, 
 Before using this config, make sure the following are installed:
 
 ### 🧠 Neovim
-- Version: **0.11.0 or higher**
+- Version: **0.12.0 or higher**
 - [Installation guide](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
 ### 🔍 Dependencies
@@ -41,19 +41,27 @@ init.lua
 │   ├── keymaps.lua             -- Global key mappings
 │   ├── autocmds.lua            -- Auto commands
 │   ├── lsp.lua                 -- LSP and diagnostics configuration
-│   └── lazy.lua                -- Lazy.nvim plugin manager configuration
+│   ├── lazy.lua                -- Lazy.nvim plugin manager configuration
+│   └── icons.lua               -- Icon definitions used across plugins
 ├── lsp/
-│   └── language_server.lua     -- Language Server Settigns
+│   ├── clangd.lua              -- C/C++
+│   ├── html.lua                -- HTML
+│   ├── jdtls.lua               -- Java
+│   ├── jsonls.lua              -- JSON
+│   ├── lua_ls.lua              -- Lua
+│   ├── ruff.lua                -- Python
+│   ├── rust_analyzer.lua       -- Rust
+│   └── ts_ls.lua               -- TypeScript/JavaScript
 └── plugins/
-    ├── colorscheme.lua         -- Theme and colorscheme
+    ├── colorscheme.lua         -- Theme and colorscheme (Catppuccin)
     ├── lualine.lua             -- Statusline setup
     ├── treesitter.lua          -- Syntax highlighting and parsing
     ├── conform.lua             -- Code formatting
     ├── oil.lua                 -- File explorer (alternative to NvimTree)
-    ├── mason.lua               -- LSP/DAP server installer
+    ├── mason.lua               -- LSP server installer
     ├── whichkey.lua            -- Keymap discovery
     ├── showkeys.lua            -- Key press feedback
-    ├── blink-cmp.lua           -- CMP and LSP completion
+    ├── blink-cmp.lua           -- Completion engine
     ├── fzf.lua                 -- Fuzzy finding via fzf-lua
     ├── autopairs.lua           -- Auto-close brackets/quotes
     ├── navic.lua               -- Breadcrumb nav for LSP
@@ -62,11 +70,13 @@ init.lua
     ├── indentline.lua          -- Indentation guides
     ├── colorizer.lua           -- Color preview in code
     ├── tmux-navigator.lua      -- Tmux window navigation
-    └── lazydev.lua             -- Lazy developer tools
-
+    ├── lazydev.lua             -- Lua development support
+    ├── hardtime.lua            -- Vim muscle memory trainer
+    └── venn.lua                -- ASCII diagram drawing
 ```
-> 💡 Commented-out plugins like `nvimtree`, `cmp`, `none-ls`, `illuminate`, and `telescope` can be easily re-enabled by un-commenting the relevant lines in `init.lua`.
+
 ---
+
 ## 🚀 Getting Started
 
 1. Clone this config into the Neovim config directory:
@@ -78,6 +88,7 @@ git clone https://github.com/Asif-Iqbal-Gazi/neovim-config.git ~/.config/nvim
 nvim
 ```
 3. You're good to go! Explore your new setup, and start coding ✨
+
 ---
 
 ## 🎯 Goals of This Config
@@ -85,6 +96,7 @@ nvim
 - **Rich LSP support** out of the box 
 - **Modern UI** using treesitter, colorizer, breadcrumbs 
 - **Developer productivity** via keymaps, commenting, formatting, fuzzy finders 
+
 ---
 
 ## 🤝 Credits
@@ -93,8 +105,10 @@ Built with ❤️ using the Neovim ecosystem and these amazing open-source tools
 - [fzf-lua](https://github.com/ibhagwan/fzf-lua) 
 - [mason.nvim](https://github.com/williamboman/mason.nvim) 
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) 
+
 ---
 
 ## 🐛 Issues / Feedback
 Feel free to open a PR or issue on the repository if you have ideas, bug reports, or improvements! 
+
 ---
