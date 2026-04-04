@@ -12,18 +12,20 @@ local M = {
         },
         disable = {
             buftypes = {},
-            filetypes = { "TelescopePrompt" },
+            filetypes = {},
         },
         spec = {
             { "<leader>q",  "<cmd>confirm q<CR>",                         desc = "Quit" },
             { "<leader>h",  "<cmd>nohlsearch<CR>",                        desc = "NOHL" },
             { "<leader>;",  "<cmd>tabnew | terminal<CR>",                 desc = "Term" },
             { "<leader>v",  "<cmd>vsplit<CR>",                            desc = "Split" },
-            { "<leader>tw", function() vim.wo.wrap = not vim.wo.wrap end, desc = "Toggle Word Wrap" },
 
-            { "<leader>d",  group = "Debug" },
             { "<leader>f",  group = "Find" },
-            { "<leader>g",  group = "LSP" },
+
+            { "<leader>l",  group = "LSP" },
+
+            { "<leader>t",  group = "Toggle" },
+            { "<leader>tw", function() vim.wo.wrap = not vim.wo.wrap end, desc = "Word Wrap" },
 
             { "<leader>a",  group = "Tab" },
             { "<leader>an", "<cmd>$tabnew<CR>",                           desc = "New Empty Tab" },

@@ -8,7 +8,6 @@ local opts = { noremap = true, silent = true }
 -- NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-keymap("n", "<Space>", "", opts) -- Space does nothing in normal mode
 
 --------------------------------------------------------------------------------
 -- ✏️ Insert Mode Shortcuts
@@ -70,27 +69,10 @@ keymap("x", "p", [["_dP]])
 -- keymap({ "n", "x" }, "k", "gk", opts)
 
 --------------------------------------------------------------------------------
--- 🧰 Utilities
---------------------------------------------------------------------------------
--- Toggle soft wrap mode
--- keymap("n", "<leader>w", ":lua vim.wo.wrap = not vim.wo.wrap<CR>", opts)
-
---------------------------------------------------------------------------------
 -- 🔁 Terminal Mode Enhancements
 --------------------------------------------------------------------------------
 -- Exit terminal insert mode using <C-;>
-vim.api.nvim_set_keymap("t", "<C-;>", "<C-\\><C-n>", opts)
-
---------------------------------------------------------------------------------
--- 🚀 LSP (Language Server Protocol)
---------------------------------------------------------------------------------
--- Add LSP mouse menu items (disabled by default)
--- vim.cmd([[:amenu 10.100 mousemenu.Goto\ Definition <cmd>lua vim.lsp.buf.definition()<CR>]])
--- vim.cmd([[:amenu 10.110 mousemenu.References <cmd>lua vim.lsp.buf.references()<CR>]])
-
--- Popup mouse menu on right click or tab (disabled by default)
--- vim.keymap.set("n", "<RightMouse>", "<cmd>:popup mousemenu<CR>")
--- vim.keymap.set("n", "<Tab>", "<cmd>:popup mousemenu<CR>")
+vim.api.nvim_set_keymap("t", "<Esc><Esc>", "<C-\\><C-n>", opts)
 
 --------------------------------------------------------------------------------
 -- 🧪 Miscellaneous
