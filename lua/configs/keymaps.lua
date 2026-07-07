@@ -75,6 +75,13 @@ keymap("x", "p", [["_dP]])
 vim.api.nvim_set_keymap("t", "<Esc><Esc>", "<C-\\><C-n>", opts)
 
 --------------------------------------------------------------------------------
+-- 💬 Commenting (built-in gc/gcc, replaces Comment.nvim)
+--------------------------------------------------------------------------------
+-- remap = true so <leader>/ expands the built-in gcc/gc mappings
+keymap("n", "<leader>/", "gcc", { remap = true, silent = true, desc = "Comment" })
+keymap("x", "<leader>/", "gc", { remap = true, silent = true, desc = "Comment" })
+
+--------------------------------------------------------------------------------
 -- 🧪 Miscellaneous
 --------------------------------------------------------------------------------
 -- Add extra mappings here

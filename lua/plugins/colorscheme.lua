@@ -51,10 +51,6 @@ function M.config()
                     background = true,
                 },
             },
-            navic = {
-                enabled = true,
-                custom_bg = "NONE", -- "lualine" will set background to mantle
-            },
             which_key = true,
         },
     })

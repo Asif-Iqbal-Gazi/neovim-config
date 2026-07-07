@@ -1,7 +1,7 @@
 local M = {
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
     dependencies = {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
     },
 }
 
@@ -26,7 +26,9 @@ function M.config()
 
     mason_lspconfig.setup({
         ensure_installed = servers,
-        automatic_installation = true,
+        -- We enable servers ourselves via vim.lsp.enable() in configs/lsp.lua,
+        -- so don't let mason-lspconfig also auto-enable them (avoids double-enable).
+        automatic_enable = false,
     })
 end
 
