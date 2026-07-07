@@ -69,13 +69,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("gdq", vim.diagnostic.setloclist, "[G]oto [D]iagnostic [Q]uickFix")
         map("gdl", vim.diagnostic.open_float, "[G]oto [D]iagnostic Current [L]ine")
 
-        -- Code Actions
-        map("gra", vim.lsp.buf.code_action, "Code Action", { "n", "x" })
-        map("grn", vim.lsp.buf.rename, "Rename Symbol")
-
-        -- Hover & Signature Help
-        map("K", vim.lsp.buf.hover, "Hover Documentation")
-        map("<C-S>", vim.lsp.buf.signature_help, "Signature Help", { "i", "s" })
+        -- gra (code action), grn (rename), K (hover) and <C-S> (signature help)
+        -- use Neovim's built-in default LSP mappings. grn/gra are relabeled for
+        -- the which-key popup in plugins/whichkey.lua.
 
         -- Toggle inlay hints (if supported)
         if client and client:supports_method("textDocument/inlayHint") then

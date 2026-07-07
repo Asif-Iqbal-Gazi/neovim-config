@@ -24,6 +24,10 @@ local M = {
 
             { "<leader>l",  group = "LSP" },
 
+            -- Relabel built-in default LSP maps in the which-key popup
+            { "grn",        desc = "Rename Symbol" },
+            { "gra",        desc = "Code Action",                         mode = { "n", "x" } },
+
             { "<leader>t",  group = "Toggle" },
             { "<leader>tw", function() vim.wo.wrap = not vim.wo.wrap end, desc = "Word Wrap" },
 
