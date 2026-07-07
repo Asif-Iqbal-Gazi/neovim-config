@@ -46,7 +46,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         -- Keymap utility
         local function map(keys, cmd, desc, mode)
-            vim.keymap.set(mode or "n", keys, cmd, { buffer = bufnr, desc = "LSP: " .. desc })
+            vim.keymap.set(mode or "n", keys, cmd, { buffer = bufnr, desc = desc })
         end
 
         -- Code Navigation

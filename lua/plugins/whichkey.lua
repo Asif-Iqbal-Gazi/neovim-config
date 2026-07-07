@@ -24,9 +24,16 @@ local M = {
 
             { "<leader>l",  group = "LSP" },
 
-            -- Relabel built-in default LSP maps in the which-key popup
+            -- Relabel built-in default LSP maps in the which-key popup so they
+            -- read consistently even before an LSP attaches (the fzf overrides
+            -- in configs/lsp.lua only set buffer-local labels on attach).
             { "grn",        desc = "Rename Symbol" },
             { "gra",        desc = "Code Action",                         mode = { "n", "x" } },
+            { "grr",        desc = "[G]oto [R]eferences" },
+            { "gri",        desc = "[G]oto [I]mplementation" },
+            { "grt",        desc = "[G]oto [T]ype Definition" },
+            { "gO",         desc = "[G]oto Document Symbols" },
+            { "grx",        desc = "Run CodeLens" },
 
             { "<leader>t",  group = "Toggle" },
             { "<leader>tw", function() vim.wo.wrap = not vim.wo.wrap end, desc = "Word Wrap" },

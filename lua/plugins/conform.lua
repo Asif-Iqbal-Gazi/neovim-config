@@ -10,7 +10,7 @@ local M = {
                 require("conform").format({ async = true })
             end,
             mode = "",
-            desc = "LSP: Format buffer",
+            desc = "Format buffer",
         },
     },
     -- This will provide type hinting with LuaLS
